@@ -34,37 +34,53 @@ int main()
 {
     // vector<vector<int>> arr = {{-1}, {2, 3}, {1, -1, -3}};
     vector<vector<int>> arr = {{-10}};
-    int m = arr.size();
-    int n = arr[m - 1].size();
+        int m = arr.size();
+        int n = arr[m - 1].size();
 
-    //  fixed starting point,variable ending point
+    //     //  fixed starting point,variable ending point
 
-    vector<vector<int>> dp(m, vector<int>(n, -1));
-    // cout << (solve(arr, 0, 0, arr.size(), dp));  
+    //     // vector<vector<int>> dp(m, vector<int>(n, -1));
+    //     // cout << (solve(arr, 0, 0, arr.size(), dp));
 
-    
+        vector<vector<int>> dp(m, vector<int>(m, -1));
 
-    for(int i=m-1;i>=0;i--)
-    {   
-        int mini = INT_MAX;
-        for(int j=n-1;j>=0;j--)
-        {
-            if(i==m-1)
-            dp[m-1][j] = arr[m-1][j];
-            else
-            {
-                // justdown
-                int jd = dp[i+1][j];
+    //     for(int i=0;i<n;i++)
+    //     {
+    //         dp[n-1][i] = arr[n-1][i];
+    //     }
 
-                // diag
-                int dg = dp[i+1][j+1];
+    //     for(int i=n-2;i>=0;i--)
+    //     {
+    //         for(int j=i;j>=0;j--)
+    //         {
+    //             int d = dp[i+1][j]+arr[i][j];
+    //             int dg = dp[i+1][j+1]+arr[i][j];
 
-                mini = min(max(jd,dg)+arr[i][j],mini);
+    //             dp[i][j] = min(d,dg);
 
-            }
-        dp[i][j] = mini;
+    //         }
+    //     }
+    // cout<<dp[0][0];
 
-        }
+    // space optimization
+
+    vector<int>prev(m,0);
+    for (int i = 0; i < n; i++)
+    {
+        prev[i] =  arr[n - 1][i];
     }
-    cout<<dp[0][0];
+
+        vector<int>temp(m,0);
+    for (int i = n - 2; i >= 0; i--)
+    {
+        for (int j = i; j >= 0; j--)
+        {
+            int d = prev[j] + arr[i][j];
+            int dg = prev[j+1] + arr[i][j];
+
+            temp[j] = min(d, dg);
+        }
+        temp = prev; 
+    }
+    cout<<prev[0];
 }
