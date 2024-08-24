@@ -1,4 +1,8 @@
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
 
+int main()
 {
     string s1 = "abcde", s2 = "abc";
     int m = s1.length();
@@ -29,7 +33,7 @@
 
         else
         {
-            if(dp[i-1][j]>dp[i][j])
+            if(dp[i-1][j]>dp[i][j-1])
             i--;
             else
             j--;
