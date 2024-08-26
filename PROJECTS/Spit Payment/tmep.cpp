@@ -40,45 +40,44 @@ int main()
             continue;
         }
 
-        else
+        else //apne alava kisi or ka bhi bill de sakta hai
         {
 
-            cout << v[i] << " Payed for" << endl;
-            vector<pair<int, int>> temp;
-            for (int j = 0; j < n; j++)
+            for(int j=0;j<n;j++)
             {
-                int x;
-                // apna bill to dega hi aadmi
-                if (x != -1) // agar bill nahi diya
+                if(i!=j)
                 {
-                    if (i != j)
-                    {
-                        cout << v[j] << " " << j << " Enter number associated" << endl;
-                        int x;
-                        cin >> x;
-                        cout << endl;
-                        if (x != -1)
-                        {
-                            cout << "Enter Amount payed for " << v[j] << endl;
-                            int a;
-                            cin >> a;
-                            temp.push_back({x, a});
-                            amtpayed -= a;
-                        }
-                    }
+                    cout<<j<<" ."<<v[j]<<endl;
                 }
+            }
+            vector<pair<int, int>> temp;
 
-                else
-                    break;
+            int x=0;
+            int tempnum = n;
+            tempnum--;
+            while(tempnum--) //input lene ke liye
+            {
+                if(x==-1)
+                break;
+                cout<<"Enter Number associated for the person payed for"<<endl;
+                cin>>x;
+
+                if(x==-1)
+                break;
+
+                cout<<"Enter amount payed for that person "<<v[x]<<endl;
+                int a;
+                cin >> a;
+                temp.push_back({x, a});
+                amtpayed -= a;
             }
             temp.push_back({i, amtpayed});
-
-            // else khatam hogaya
 
             for (auto it : temp)
             {
                 exp[i][it.first] = it.second;
             }
+
         }
     }
     for (int i = 0; i < n; i++)
@@ -139,7 +138,7 @@ int main()
         }
         else
         {
-            cout << v[i] << " Owes " << v[toown] << " Amount " << tamount << endl;
+            cout << v[i] << " Owes " << v[toown] << " Amount " << tamount-exp[i][i] << endl;
         }
         cout << endl;
         cout << endl;
