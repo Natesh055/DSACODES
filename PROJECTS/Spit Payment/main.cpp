@@ -1,5 +1,6 @@
 #include <iostream>
 #include <bits/stdc++.h>
+#include<set>
 using namespace std;
 
 void payedfor(vector<vector<float>> p, int i)
@@ -54,8 +55,7 @@ int main()
         {
 
             cout << v[i] << " Payed for" << endl;
-            vector<int> temp;
-            temp.push_back(i);
+            vector<pair<int,int>> temp;
             for (int j = 0; j < n; j++)
             {
                 int x;
@@ -69,17 +69,26 @@ int main()
                         cin >> x;
                         cout << endl;
                         if (x != -1)
-                            temp.push_back(x);
+                        {
+                            cout<<"Enter Amount payed for "<<v[j]<<endl;
+                            int a;
+                            cin>>a;
+                            temp.push_back({x,a});
+                            amtpayed-=a;
+                        }
                     }
                 }
+
                 else
                     break;
             }
+            temp.push_back({i,amtpayed});
+
             // else khatam hogaya
-            float amt = (float)amtpayed / temp.size();
+
             for (auto it : temp)
             {
-                exp[i][it] = amt;
+                exp[i][it.first] = it.second;
             }
         }
     }
@@ -100,7 +109,7 @@ int main()
     cout<<endl;
     for (int i = 0; i < n; i++)
     {
-        int owe = tamount;
+        int owe = tamount-exp[i][i];
         int get = 0;
         vector<int>toget;
 
@@ -120,7 +129,7 @@ int main()
         int toown;
         for (int j = 0; j < n; j++)
         {
-            if(exp[i][j]!=0)
+            if(exp[j][i]!=0)
             {
                 toown = j;
                 break;
