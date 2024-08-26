@@ -134,7 +134,7 @@ int main()
         }
         else if (owe == 0 && get != 0)
         {
-            cout << v[i] << " Does not owe any one and will get money from " << endl;
+            cout << v[i] << " Will get money from " << endl;
             for (auto it : toget)
             {
                 cout << v[it.second] << " Amount " << it.first << endl;
@@ -156,4 +156,4 @@ int main()
 }
 
 // 4 Natesh Varun Shivansh Piyush 230 2 30 3 100 -1 100 -1 70 -1 0
-// 4 Natesh Varun Shivansh Piyush 115 2 15 -1 100 -1 70 -1 115 2 15 -1
+// 4 Natesh Varun Shivansh Piyush 115 2 15 -1 100 -1 80 -1 105 2 5 -1
