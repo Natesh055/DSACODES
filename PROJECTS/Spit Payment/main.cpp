@@ -70,7 +70,7 @@ int main()
                     }
                 }
                 vector<pair<int, int>> temp;
-                int x = 0;
+                float x = 0;
                 int tempnum = n;
                 tempnum--;
                 while (tempnum--) // input lene ke liye
@@ -112,41 +112,39 @@ int main()
         cout << endl;
     }
 
-    cout << endl;
-    cout << endl;
-
     vector<vector<float>> finalmatrix(n, vector<float>(n, 0));
-
-    for (int i = 0; i < n; i++)
+    for (auto i : visitedplustable)
     {
         for (int j = 0; j < n; j++)
         {
             for (int k = 0; k < n; k++)
             {
-                finalmatrix[j][k] += visitedplustable[i][j][k];
+                finalmatrix[j][k] += i[j][k];
             }
         }
     }
+    // 2 nitin mummy 1 driver 200 1 100 0
+
 
     cout << endl;
     cout << endl;
 
-    // for (int i = 0; i < n; i++)
-    // {
-    //     for (int j = 0; j < n; j++)
-    //     {
-    //         cout << finalmatrix[i][j] << " ";
-    //     }
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            cout << finalmatrix[i][j] << " ";
+        }
+        cout << endl;
+    }
+
+    //     tamount /= n;
     //     cout << endl;
-    // }
 
-    tamount /= n;
-    cout << endl;
+    //     // cout<<tamount;
 
-    // cout<<tamount;
-
-    // 2 Nitin Mummy 2 Taxi Flight 400 1 200 0 0 6000 0 3000
-    // 3 Nitin Papa Mummy 3 Taxi Flight Rail 1200 1 400 2 400 0 0 0 1800 0 600 2 600 0 0 0 9000 0 3000 1 3000
+    //     // 2 Nitin Mummy 2 Taxi Flight 400 1 200 0 0 6000 0 3000
+    //     // 3 Nitin Papa Mummy 3 Taxi Flight Rail 1200 1 400 2 400 0 0 0 1800 0 600 2 600 0 0 0 9000 0 3000 1 3000
 
     vector<int> net_balance(n, 0);
 
@@ -201,11 +199,17 @@ int main()
 
     // Output the transactions
     cout << "\nTransactions to settle the debts:\n";
-    for (auto &t : transactions)
+    if (transactions.size() == 0)
     {
-        cout << v[t.from] << " would recieve " << t.amount << " Rupees from  " << v[t.to] << endl;
+        cout << "All Debts are already settled" << endl;
+    }
+    else
+    {
+        for (auto &t : transactions)
+        {
+            cout << v[t.from] << " would recieve " << t.amount << " Rupees from  " << v[t.to] << endl;
+        }
     }
 
     return 0;
 }
-
